@@ -14,9 +14,8 @@ public class Block extends Rectangle {
     int maximumX;
     int maximumY;
 
-
     public Block(int x, int y, Block p, Field field) {
-        super(App.blockSize, App.blockSize); // = blockSize saved in Main - but why twice? Ich glaube einmal für x und einmal für y
+        super(App.blockSize, App.blockSize); // = blockSize saved in Main - but why twice? Once for x, once for y..?
         this.posX = x;
         this.posY = y;
         setTranslateX(posX * App.blockSize);
@@ -31,7 +30,7 @@ public class Block extends Rectangle {
         oldPosX = posX;    //set old positions to new positions before moving
         oldPosY = posY;
 
-        if (previous == null) {  //we're in a the head block of the snake and we'll have choices in which direction to move next..
+        if (previous == null) {  //we're in the head block of the snake and we'll have choices in which direction to move next..
             switch (direction) {
                 case UP:
                     moveUp();
@@ -46,12 +45,11 @@ public class Block extends Rectangle {
                     moveLeft();
                     break;
             }
-
         } else {    //if we're not in head of snake (block)
             posX = previous.oldPosX;
             posY = previous.oldPosY;
         }
-        updatePosition();
+        updatePosition(); // visual position update after logical update
     }
 
     //Methods for moving:.. the if conditions in each enable the snake when reaching top to come out of bottom, etc..
@@ -85,7 +83,7 @@ public class Block extends Rectangle {
     }
 
     public void updatePosition() {  //method to update() visually
-        //System.out.println(posX + "  /  " + posY);
+        // System.out.println(posX + "  /  " + posY); --> for debugging, to see what it's doing
         setTranslateX(posX * App.blockSize);
         setTranslateY(posY * App.blockSize);
     }

@@ -16,11 +16,16 @@ public class Food extends Rectangle {
         setTranslateY(posY * App.blockSize);
         //posX and posY aren't in pixels but blocks, that is why we have to multiply by blockSize to get actual position
 
-
         //set food color
         setFill(Color.ORANGE);
         setStroke(Color.RED);
     }
 
+    public int getPosX() {
+        return posX;
+    }
 
+    public int getPosY() {
+        return posY;
+    }
 }
