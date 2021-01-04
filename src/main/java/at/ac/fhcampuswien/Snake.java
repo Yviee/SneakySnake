@@ -21,7 +21,7 @@ public class Snake {
         head = new Block(initPosX, initPosY, null, field);//if you do not need something you write null
         blocks.add(head);
         //to make the snake's head green (or any color)
-        head.setFill(Color.GREEN.desaturate());
+        head.setFill(Color.CRIMSON);
         //(desaturate) creates a new color that is a less saturated version of the green color
         // is there variation in saturation? E. g.: 50 % saturation? # christina
 

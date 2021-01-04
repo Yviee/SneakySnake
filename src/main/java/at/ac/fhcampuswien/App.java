@@ -7,6 +7,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -44,8 +45,10 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         //VBox root = new VBox(10);
+
         Pane root = new Pane();
-        Scene scene = new Scene(root /**500, 550*/);
+        Scene scene = new Scene(root /**, 500, 550*/);
+        root.setPadding(new Insets(300,320,220,300));
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sneaky Snake");
         primaryStage.show();
@@ -125,7 +128,7 @@ public class App extends Application {
 
 
         //primaryStage.setResizable(false);
-    //root.setPadding(new Insets(10));
+
     //Button button = new Button();
     //button.setText("Start Game!");
     //button.setOnAction( (event) -> Platform.exit() );
