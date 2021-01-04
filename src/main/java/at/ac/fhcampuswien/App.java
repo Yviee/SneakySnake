@@ -12,18 +12,16 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.*;
-
 import java.awt.*;
-
 import static javax.swing.text.StyleConstants.setBackground;
 
+/**
+ * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
+ */
 public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-    // We probably need VBox, because the old version code below uses an additional fxml file that is not included in here.
-    // Our App class = video's Main class. Code will probably look the same in terms of VBox. Button has to be erased etc.
 
     // snake consists of pixel blocks
     static int blockSize = 20;
@@ -34,7 +32,7 @@ public class App extends Application {
 
     int initLength = 10;
 
-    long later = System.nanoTime(); //to slow down loop:
+    long later = System.nanoTime(); //to slow down loop
 
     boolean changed = false;
     int nextUpdate;
@@ -44,11 +42,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //VBox root = new VBox(10);
 
         Pane root = new Pane();
         Scene scene = new Scene(root /**, 500, 550*/);
-        root.setPadding(new Insets(300,320,220,300));
+        root.setPadding(new Insets(300,320,250,300));
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sneaky Snake");
         primaryStage.show();
@@ -64,7 +61,7 @@ public class App extends Application {
             @Override
             public void handle(long now) {
                 //to update only one time every second (10^9ns is 1s)
-                if (now - later > 1000000000 / 8) {  //we can divide by any value(the bigger) the faster the snake moves
+                if (now - later > 1000000000 / 8) {  // divide by any value: the bigger the value, the faster the snake moves
                     field.update();
                     later = now;
                     score.setText("Score: " + field.score);
@@ -124,28 +121,4 @@ public class App extends Application {
             nextUpdate = direction;
         }
     }
-
-
-
-        //primaryStage.setResizable(false);
-
-    //Button button = new Button();
-    //button.setText("Start Game!");
-    //button.setOnAction( (event) -> Platform.exit() );
-    //root.getChildren().add(button);
-
-    /*
-    // First version Code (without gradle) - perhaps we might need some of it later?
-     @Override
-    public void start(Stage primaryStage) {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Sneaky Snake");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
-    }
-
-    HBox, VBox and Stage are different ways of how to display the "window"
-
-     */
-
 }

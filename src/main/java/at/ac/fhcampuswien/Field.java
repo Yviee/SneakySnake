@@ -2,9 +2,13 @@ package at.ac.fhcampuswien;
 
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+/**
+ * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
+ */
 
 public class Field extends Pane {
     private int w, h;
@@ -18,12 +22,12 @@ public class Field extends Pane {
         w = width;
         h = height;
         setMinSize(w * App.blockSize, h * App.blockSize);
-        setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null))); //-> what would those null variables do (radii & insets)?
+        setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
         setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-        addFood();  //call method in field
+        addFood();
     }
 
-    public void addSnake(Snake s) {//
+    public void addSnake(Snake s) {
         this.snake = s;
         for (Block b : s.blocks) {
             addBlock(b);
@@ -33,6 +37,8 @@ public class Field extends Pane {
     private void addBlock(Block b) {
         getChildren().add(b);//Child is in block
         blocks.add(b);
+        b.setFill(Color.LIGHTSEAGREEN);
+        snake.head.setFill(Color.CRIMSON);
     }
 
     public void update() {
@@ -65,15 +71,15 @@ public class Field extends Pane {
         addBlock(b);
     }
 
-    //to add the food block to the game field
+    // add food block to game field
     public void addFood() {
-        //method() will add food block every run in a random position
+        // add food block every run in a random position
         int randomXPos = (int) (Math.random() * w);
         int randomYPos = (int) (Math.random() * h);
 
-        //create food object
+        // create food object
         Food food = new Food(randomXPos, randomYPos);
-        getChildren().add(food); //add object into the pane
+        getChildren().add(food); //add object into  pane
         getChildren().remove(f); //removes food after being eaten; only new food will be shown
         f = food;
     }
@@ -84,6 +90,32 @@ public class Field extends Pane {
             return false;
         }
         return f.getPosX() == snake.head.posX && f.getPosY() == snake.head.posY;
+    }
+
+    private boolean collisionDetection (int x, int y) {
+        return (Math.abs(x-getW()) < App.blockSize && Math.abs(y-getH()) < App.blockSize);
+    }
+
+    public void foodCollision (Snake c){
+        boolean collision = false;
+
+        do{
+            collision = false;
+            this.addFood();
+
+            // Obtain an iterator for snake's parts
+            Iterator snakerator = c.getPartsIterator();
+            Block blocks;
+            // Iterate over all the parts to see if our new point is
+            // over some of the snake part.
+            while( snakerator.hasNext() ){
+                blocks = (Block)snakerator.next();
+                collision = this.collisionDetection(blocks.posX,blocks.posY);
+                if( collision ){
+                    break;
+                }
+            }
+        }while(collision);
     }
 
     public int getW() {

@@ -1,11 +1,16 @@
 package at.ac.fhcampuswien;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+/**
+ * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
+ */
 
 public class Block extends Rectangle {
     int posX, posY, oldPosX, oldPosY;
 
-    static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3; //initial values are probably random, we could change them later..
+    static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 
     int direction = LEFT;
 
@@ -15,7 +20,7 @@ public class Block extends Rectangle {
     int maximumY;
 
     public Block(int x, int y, Block p, Field field) {
-        super(App.blockSize, App.blockSize); // = blockSize saved in Main - but why twice? Once for x, once for y..?
+        super(App.blockSize, App.blockSize);
         this.posX = x;
         this.posY = y;
         setTranslateX(posX * App.blockSize);
@@ -26,11 +31,10 @@ public class Block extends Rectangle {
     }
 
     public void update() {//movement method to update() logically
-        // System.out.println(previous);
         oldPosX = posX;    //set old positions to new positions before moving
         oldPosY = posY;
 
-        if (previous == null) {  //we're in the head block of the snake and we'll have choices in which direction to move next..
+        if (previous == null) {  //we're in the head block of the snake and we'll have choices in which direction to move next
             switch (direction) {
                 case UP:
                     moveUp();
@@ -52,8 +56,7 @@ public class Block extends Rectangle {
         updatePosition(); // visual position update after logical update
     }
 
-    //Methods for moving:.. the if conditions in each enable the snake when reaching top to come out of bottom, etc..
-
+    //Methods for moving: the if conditions in each enables the snake when reaching top to come out of bottom etc.
     public void moveUp() {
         posY--; //decrement position Y
         if (posY < 0) {
@@ -83,10 +86,7 @@ public class Block extends Rectangle {
     }
 
     public void updatePosition() {  //method to update() visually
-        // System.out.println(posX + "  /  " + posY); --> for debugging, to see what it's doing
         setTranslateX(posX * App.blockSize);
         setTranslateY(posY * App.blockSize);
     }
-
-
 }
