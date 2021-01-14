@@ -91,8 +91,7 @@ public class App extends Application {
 
         Label score = new Label("Score: 0");
         score.setFont(Font.font("tahoma", 32));
-        //score.setAlignment(Pos.BOTTOM_LEFT);
-
+        score.relocate(10, 550);
 
         //An infinity loop that doesn't block the UI thread, will rerun its handle method every frame. (Game loop)
         AnimationTimer timer = new AnimationTimer() {
