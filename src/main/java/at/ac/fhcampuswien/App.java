@@ -3,6 +3,7 @@ package at.ac.fhcampuswien;
 import javafx.animation.AnimationTimer;
 import javafx.application.*;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -13,6 +14,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.*;
 import java.awt.*;
+
+import static javafx.application.Platform.exit;
 import static javax.swing.text.StyleConstants.setBackground;
 
 /**
@@ -27,8 +30,8 @@ public class App extends Application {
     static int blockSize = 20;
 
     // variables for Field in block sizes (1 block = 20 pixels)
-    int width = 30;
-    int height = 25;
+    int width = 27;
+    int height = 27;
 
     int initLength = 10;
 
@@ -38,23 +41,58 @@ public class App extends Application {
     int nextUpdate;
     boolean hasNextUpdate = false;
 
+    Stage window;
+    Scene scene1, scene2;
     Field field;
 
     @Override
-    public void start(Stage primaryStage) {
-
+    public void start(Stage primaryStage) throws Exception {
         Pane root = new Pane();
-        Scene scene = new Scene(root /**, 500, 550*/);
-        root.setPadding(new Insets(300,320,250,300));
+        window = primaryStage;
+
+        Label menu = new Label("Menu");
+        menu.setFont(new Font("Tahoma", 32));
+        Button buttonStart = new Button("Start Game");
+        buttonStart.setFont(new Font("Tahoma", 20));
+        buttonStart.setOnAction(e->window.setScene(scene2));
+
+        Button buttonExit = new Button("Exit");
+        buttonExit.setFont(new Font("Tahoma", 20));
+        buttonExit.setOnAction(e->exit());
+
+        VBox layout1 = new VBox(27);
+        layout1.getChildren().addAll(menu, buttonStart, buttonExit);
+        layout1.setAlignment(Pos.CENTER);
+        scene1 = new Scene(layout1, 270,270);
+
+       /* Button button = new Button("Exit");
+        button.setFont(new Font("Tahoma", 20));
+        button.setOnAction(e->window.setScene(scene1));*/
+
+        //StackPane layout2 = new StackPane();
+        //layout2.getChildren().addAll(button);
+        scene2 = new Scene(root, 540,600);
+
+        window.setScene(scene1);
+        window.setTitle("Sneaky Snake");
+        window.show();
+
+
+        /*Pane root = new Pane();
+        Scene scene = new Scene(root, 540, 600);
+        root.setPadding(new Insets(270,270,270,270));
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sneaky Snake");
-        primaryStage.show();
+        primaryStage.show();*/
+
 
         field = new Field(width, height);
         field.addSnake(new Snake(initLength, field));
 
         Label score = new Label("Score: 0");
         score.setFont(Font.font("tahoma", 32));
+        //score.setAlignment(Pos.BOTTOM_LEFT);
+
 
         //An infinity loop that doesn't block the UI thread, will rerun its handle method every frame. (Game loop)
         AnimationTimer timer = new AnimationTimer() {
@@ -65,6 +103,7 @@ public class App extends Application {
                     field.update();
                     later = now;
                     score.setText("Score: " + field.score);
+                    //score.setAlignment(Pos.BOTTOM_LEFT);
                     changed = false;
                     if (hasNextUpdate) { //smoother control
                         setDirection(field.snake, nextUpdate);
@@ -96,7 +135,7 @@ public class App extends Application {
 
         //add a listener on the scene
         //call of methods getDirection() and setDirection()
-        scene.setOnKeyPressed(event -> {  // ->lambda expression
+        scene2.setOnKeyPressed(event -> {  // ->lambda expression
             if (event.getCode().equals(KeyCode.UP) && field.snake.getDirection() != Block.DOWN) {
                 setDirection(field.snake, Block.UP);
             }
