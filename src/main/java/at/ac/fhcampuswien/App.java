@@ -100,6 +100,7 @@ public class App extends Application {
                         stop();
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION); // shows message when snake dies
+                        alert.setTitle("You've been bitten!");
                         alert.setHeaderText("Better luck next time!");
                         alert.setContentText("Your score is " + field.score);
                         Image gameOver = new Image("game.png");
@@ -130,13 +131,13 @@ public class App extends Application {
             if (event.getCode().equals(KeyCode.UP) && field.snake.getDirection() != Block.DOWN) {
                 setDirection(field.snake, Block.UP);
             }
-            else if (event.getCode().equals(KeyCode.DOWN) && field.snake.getDirection() != Block.UP) {
+            if (event.getCode().equals(KeyCode.DOWN) && field.snake.getDirection() != Block.UP) {
                 setDirection(field.snake, Block.DOWN);
             }
-            else if (event.getCode().equals(KeyCode.RIGHT) && field.snake.getDirection() != Block.LEFT) {
+            if (event.getCode().equals(KeyCode.RIGHT) && field.snake.getDirection() != Block.LEFT) {
                 setDirection(field.snake, Block.RIGHT);
             }
-            else if (event.getCode().equals(KeyCode.LEFT) && field.snake.getDirection() != Block.RIGHT) {
+            if (event.getCode().equals(KeyCode.LEFT) && field.snake.getDirection() != Block.RIGHT) {
                 setDirection(field.snake, Block.LEFT);
             }
         });
