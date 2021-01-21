@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.stage.*;
 import static javafx.application.Platform.exit;
 
+
 public class App extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -40,7 +41,7 @@ public class App extends Application {
     Image image = new Image("snake.png");
 
     @Override
-    public void start(Stage window) {
+    public void start(Stage window){
         Pane root = new Pane();
 
         ImageView imageView = new ImageView();
@@ -102,9 +103,10 @@ public class App extends Application {
                         alert.setHeaderText("Better luck next time!");
                         alert.setContentText("Your score is " + field.score);
                         Image gameOver = new Image("game.png");
-                        ImageView imageView = new ImageView(gameOver);
-                        alert.setGraphic(imageView);
-                        imageView.setFitWidth(200);
+                        ImageView imageView1 = new ImageView(gameOver);
+                        alert.setGraphic(imageView1);
+                        imageView1.setPreserveRatio(true);
+                        imageView1.setFitWidth(200);
                         Platform.runLater((alert::showAndWait));
 
                         alert.setOnHidden(event -> { // resets game after message
