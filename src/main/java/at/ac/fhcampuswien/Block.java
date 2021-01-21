@@ -1,14 +1,12 @@
 package at.ac.fhcampuswien;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-/**
- * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
- */
-
 public class Block extends Rectangle {
-    int posX, posY, oldPosX, oldPosY;
+    public int posX;
+    public int posY;
+    public int oldPosX;
+    public int oldPosY;
 
     static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 
@@ -86,6 +84,7 @@ public class Block extends Rectangle {
     }
 
     public void updatePosition() {  //method to update() visually
+        //System.out.println(posX + "  /  " + posY);
         setTranslateX(posX * App.blockSize);
         setTranslateY(posY * App.blockSize);
     }

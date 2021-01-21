@@ -2,11 +2,6 @@ package at.ac.fhcampuswien;
 
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-/**
- * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
- */
 
 public class Snake {
     ArrayList<Block> blocks = new ArrayList<Block>();//this is the array where the blocks are going to be added to create the snake
@@ -42,9 +37,4 @@ public class Snake {
     public int getDirection() {
         return head.direction;
     }
-
-    public Iterator getPartsIterator(){
-        return this.blocks.iterator();
-    }
 }
-

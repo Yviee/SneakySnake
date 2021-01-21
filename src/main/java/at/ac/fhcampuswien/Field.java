@@ -2,13 +2,7 @@ package at.ac.fhcampuswien;
 
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-/**
- * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
- */
 
 public class Field extends Pane {
     private int w, h;
@@ -99,32 +93,6 @@ public class Field extends Pane {
         }
         return f.getPosX() == snake.head.posX && f.getPosY() == snake.head.posY;
     }
-
-    private boolean collisionDetection (int x, int y) {
-        return (Math.abs(x-getW()) < App.blockSize && Math.abs(y-getH()) < App.blockSize);
-    }
-
-   /* public void foodCollision (Snake c){
-        boolean collision = false;
-
-        do{
-            collision = false;
-            this.addFood();
-
-            // Obtain an iterator for snake's parts
-            Iterator snakerator = c.getPartsIterator();
-            Block blocks;
-            // Iterate over all the parts to see if our new point is
-            // over some of the snake part.
-            while( snakerator.hasNext() ){
-                blocks = (Block)snakerator.next();
-                collision = this.collisionDetection(blocks.posX,blocks.posY);
-                if( collision ){
-                    break;
-                }
-            }
-        }while(collision);
-    }*/
 
     public int getW() {
         return w;

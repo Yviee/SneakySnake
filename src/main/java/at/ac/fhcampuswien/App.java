@@ -2,7 +2,6 @@ package at.ac.fhcampuswien;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.*;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -14,17 +13,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.*;
-import java.awt.*;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static javafx.application.Platform.exit;
-import static javax.swing.text.StyleConstants.setBackground;
 
-/**
- * !! BEFORE REVIEWING THE CODE, PLEASE READ OUR README FILE!!
- */
 public class App extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -45,20 +35,17 @@ public class App extends Application {
     int nextUpdate;
     boolean hasNextUpdate = false;
 
-    Stage window;
     Scene scene1, scene2;
     Field field;
-    Image image = new Image("file:snake.png");
+    Image image = new Image("snake.png");
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage window) {
         Pane root = new Pane();
-        window = primaryStage;
 
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setPreserveRatio(true);
-        //imageView.setFitHeight(300);
         imageView.setFitWidth(540);
 
         Button buttonStart = new Button("Start Game");
