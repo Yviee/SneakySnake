@@ -101,6 +101,10 @@ public class App extends Application {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION); // shows message when snake dies
                         alert.setHeaderText("Better luck next time!");
                         alert.setContentText("Your score is " + field.score);
+                        Image gameOver = new Image("game.png");
+                        ImageView imageView = new ImageView(gameOver);
+                        alert.setGraphic(imageView);
+                        imageView.setFitWidth(200);
                         Platform.runLater((alert::showAndWait));
 
                         alert.setOnHidden(event -> { // resets game after message
