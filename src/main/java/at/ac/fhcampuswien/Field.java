@@ -77,6 +77,14 @@ public class Field extends Pane {
         int randomXPos = (int) (Math.random() * w);
         int randomYPos = (int) (Math.random() * h);
 
+        for (int i=0; i<blocks.toArray().length; i++){
+            if (randomXPos == snake.tail.getX() && randomYPos == snake.tail.getY()){
+                randomXPos = (int) (Math.random() * w);
+                randomYPos = (int) (Math.random() * h);
+                i=0;
+            }
+        }
+
         // create food object
         Food food = new Food(randomXPos, randomYPos);
         getChildren().add(food); //add object into  pane
@@ -96,7 +104,7 @@ public class Field extends Pane {
         return (Math.abs(x-getW()) < App.blockSize && Math.abs(y-getH()) < App.blockSize);
     }
 
-    public void foodCollision (Snake c){
+   /* public void foodCollision (Snake c){
         boolean collision = false;
 
         do{
@@ -116,7 +124,7 @@ public class Field extends Pane {
                 }
             }
         }while(collision);
-    }
+    }*/
 
     public int getW() {
         return w;
