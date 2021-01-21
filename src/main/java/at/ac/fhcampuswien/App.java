@@ -124,13 +124,13 @@ public class App extends Application {
             if (event.getCode().equals(KeyCode.UP) && field.snake.getDirection() != Block.DOWN) {
                 setDirection(field.snake, Block.UP);
             }
-            if (event.getCode().equals(KeyCode.DOWN) && field.snake.getDirection() != Block.UP) {
+            else if (event.getCode().equals(KeyCode.DOWN) && field.snake.getDirection() != Block.UP) {
                 setDirection(field.snake, Block.DOWN);
             }
-            if (event.getCode().equals(KeyCode.RIGHT) && field.snake.getDirection() != Block.LEFT) {
+            else if (event.getCode().equals(KeyCode.RIGHT) && field.snake.getDirection() != Block.LEFT) {
                 setDirection(field.snake, Block.RIGHT);
             }
-            if (event.getCode().equals(KeyCode.LEFT) && field.snake.getDirection() != Block.RIGHT) {
+            else if (event.getCode().equals(KeyCode.LEFT) && field.snake.getDirection() != Block.RIGHT) {
                 setDirection(field.snake, Block.LEFT);
             }
         });
