@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Field extends Pane {
     private int w, h;
 
-    ArrayList<Block> blocks = new ArrayList<Block>();//snake consists of blocks in array
+    ArrayList<Block> blocks = new ArrayList<>();//snake consists of blocks in array
     int score = 0;
     Food f;
     Snake snake;
@@ -68,17 +68,17 @@ public class Field extends Pane {
     // add food block to game field
     public void addFood() {
         // add food block every run in a random position
+
         int randomXPos = (int) (Math.random() * w);
         int randomYPos = (int) (Math.random() * h);
 
-        for (int i=0; i<blocks.toArray().length; i++){
-            if (randomXPos == snake.tail.getX() && randomYPos == snake.tail.getY()){
+        // check if food appears in snake's body
+        for (Block block : blocks) {
+            while (randomXPos == block.posX && randomYPos == block.posY) {
                 randomXPos = (int) (Math.random() * w);
                 randomYPos = (int) (Math.random() * h);
-                i=0;
             }
         }
-
         // create food object
         Food food = new Food(randomXPos, randomYPos);
         getChildren().add(food); //add object into  pane

@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
 public class Snake {
-    ArrayList<Block> blocks = new ArrayList<Block>();//this is the array where the blocks are going to be added to create the snake
+    ArrayList<Block> blocks = new ArrayList<>();//this is the array where the blocks are going to be added to create the snake
 
     Block head;
     Block tail;

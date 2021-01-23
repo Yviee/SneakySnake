@@ -15,7 +15,6 @@ import javafx.scene.text.Font;
 import javafx.stage.*;
 import static javafx.application.Platform.exit;
 
-
 public class App extends Application {
     public static void main(String[] args) {
         launch(args);
