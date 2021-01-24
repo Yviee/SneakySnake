@@ -72,11 +72,16 @@ public class Field extends Pane {
         int randomXPos = (int) (Math.random() * w);
         int randomYPos = (int) (Math.random() * h);
 
-        // check if food appears in snake's body
-        for (Block block : blocks) {
-            while (randomXPos == block.posX && randomYPos == block.posY) {
-                randomXPos = (int) (Math.random() * w);
-                randomYPos = (int) (Math.random() * h);
+        // check if food appears on snake's body
+        for (Block part: blocks) {
+            for(int i = 0; i < blocks.size(); i++) {
+                while (randomXPos == part.posX && randomYPos == part.posY) {
+                    System.out.println("Food x = " + randomXPos + ", Food y = " + randomYPos);
+                    System.out.println("Block No: " + blocks.indexOf(part) + ", Block x = " + part.posX + ", Block y = " + part.posY);
+                    randomXPos = (int) (Math.random() * w);
+                    randomYPos = (int) (Math.random() * h);
+                    i = 0;
+                }
             }
         }
         // create food object
