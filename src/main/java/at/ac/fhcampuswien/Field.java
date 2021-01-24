@@ -76,8 +76,8 @@ public class Field extends Pane {
         for (Block part: blocks) {
             for(int i = 0; i < blocks.size(); i++) {
                 while (randomXPos == part.posX && randomYPos == part.posY) {
-                    System.out.println("Food x = " + randomXPos + ", Food y = " + randomYPos);
-                    System.out.println("Block No: " + blocks.indexOf(part) + ", Block x = " + part.posX + ", Block y = " + part.posY);
+                    //System.out.println("Food x = " + randomXPos + ", Food y = " + randomYPos);
+                    //System.out.println("Block No: " + blocks.indexOf(part) + ", Block x = " + part.posX + ", Block y = " + part.posY);
                     randomXPos = (int) (Math.random() * w);
                     randomYPos = (int) (Math.random() * h);
                     i = 0;
